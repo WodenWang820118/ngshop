@@ -1,0 +1,10 @@
+.admin {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+
+  &__content {
+    width: calc(100% - 175px);
+    margin-left: 175px;
+  }
+}
