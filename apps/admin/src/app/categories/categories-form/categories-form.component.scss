@@ -1,0 +1,10 @@
+.admin-categories-form {
+  &__btn:not(:last-child) {
+    margin-right: 10px;
+  }
+
+  &__color-plate {
+    display: flex;
+    flex-direction: column;
+  }
+}
