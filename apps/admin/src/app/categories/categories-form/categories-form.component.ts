@@ -1,7 +1,7 @@
 import { CategoriesService, Category } from '@ngshop/products';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MessageService } from 'primeng/api';
+import { CrudUiService } from '../../shared/services/crudUi.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -13,12 +13,13 @@ export class CategoriesFormComponent {
   form: FormGroup;
   isSubmitted = false;
   editMode = false;
+  fields = ['name', 'icon'];
 
   constructor(
     private readonly fb: FormBuilder,
     private readonly categoriesService: CategoriesService,
-    private readonly messageService: MessageService,
-    private readonly router: Router
+    private readonly router: Router,
+    private readonly crudUiService: CrudUiService
   ) {
     this.form = this.fb.group({
       name: [
@@ -68,59 +69,25 @@ export class CategoriesFormComponent {
   }
 
   createCategory(category: Category) {
-    this.categoriesService.create(category).subscribe({
-      next: res => {
-        console.log(res);
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Success',
-          detail: 'Category created successfully',
-        });
-      },
-      error: error => {
-        console.error(error);
-        this.messageService.add({
-          severity: 'error',
-          summary: 'Error',
-          detail: 'Category not created',
-        });
-      },
-      complete: () => {
+    this.crudUiService.createItem(this.categoriesService, 'Category', category);
+    this.crudUiService.operationComplete.subscribe(success => {
+      if (success) {
         setTimeout(() => {
           this.form.reset();
           this.isSubmitted = false;
           this.router.navigate(['/categories']);
         }, 1500);
-      },
+      }
     });
   }
 
   updateCategory(category: Category) {
     const categoryId = this.router.url.split('/')[3];
-    this.categoriesService.update(category, categoryId).subscribe({
-      next: res => {
-        console.log(res);
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Success',
-          detail: 'Category updated successfully',
-        });
-      },
-      error: error => {
-        console.error(error);
-        this.messageService.add({
-          severity: 'error',
-          summary: 'Error',
-          detail: 'Category not updated',
-        });
-      },
-      complete: () => {
-        setTimeout(() => {
-          this.form.reset();
-          this.isSubmitted = false;
-          this.router.navigate(['/categories']);
-        }, 1500);
-      },
-    });
+    this.crudUiService.updateItem(
+      this.categoriesService,
+      'Category',
+      category,
+      categoryId
+    );
   }
 }

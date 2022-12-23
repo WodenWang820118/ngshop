@@ -1,5 +1,5 @@
 {
-  "extends": ["../../.eslintrc.json"],
+  "extends": ["../../../.eslintrc.json"],
   "ignorePatterns": ["!**/*"],
   "overrides": [
     {
@@ -20,12 +20,6 @@
             "prefix": "ngshop",
             "style": "kebab-case"
           }
-        ],
-        "prettier/prettier": [
-          "error",
-          {
-            "endOfLine": "auto"
-          }
         ]
       },
       "extends": [
@@ -36,14 +30,7 @@
     {
       "files": ["*.html"],
       "extends": ["plugin:@nrwl/nx/angular-template"],
-      "rules": {
-        "prettier/prettier": [
-          "error",
-          {
-            "endOfLine": "auto"
-          }
-        ]
-      }
+      "rules": {}
     }
   ]
 }

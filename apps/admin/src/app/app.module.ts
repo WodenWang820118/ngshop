@@ -23,6 +23,15 @@ import { MessageService } from 'primeng/api';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
 import { ColorPickerModule } from 'primeng/colorpicker';
+import { ProductsFormComponent } from './products/products-form/products-form.component';
+import { ProductsListComponent } from './products/products-list/products-list.component';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { InputSwitchModule } from 'primeng/inputswitch';
+import { DropdownModule } from 'primeng/dropdown';
+import { EditorModule } from 'primeng/editor';
+import { UiFormModule } from '@ngshop/ui/form';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,6 +40,8 @@ import { ColorPickerModule } from 'primeng/colorpicker';
     DashboardComponent,
     CategoriesListComponent,
     CategoriesFormComponent,
+    ProductsFormComponent,
+    ProductsListComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,6 +59,12 @@ import { ColorPickerModule } from 'primeng/colorpicker';
     BrowserAnimationsModule,
     ConfirmDialogModule,
     ColorPickerModule,
+    InputNumberModule,
+    InputTextareaModule,
+    InputSwitchModule,
+    DropdownModule,
+    EditorModule,
+    UiFormModule,
   ],
   providers: [MessageService, ConfirmationService],
   bootstrap: [AppComponent],

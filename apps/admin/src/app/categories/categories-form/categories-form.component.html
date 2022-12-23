@@ -3,65 +3,29 @@
   <p-card
     [header]="editMode ? 'Edit Category' : 'Add Category'"
     subheader="You can add or edit categories here">
-    <div class="grid">
-      <div class="col-12">
-        <p-toolbar>
-          <div class="toolbar-group-left"></div>
-          <div class="toolbar-group-right">
-            <p-button
-              class="admin-categories-form__btn"
-              styleClass="p-button-orimary"
-              [label]="editMode ? 'Update' : 'Create'"
-              icon="pi pi-plus"
-              (onClick)="onSubmit()">
-            </p-button>
-            <p-button
-              class="admin-categories-form__btn"
-              styleClass="p-button-secondary"
-              icon="pi pi-arrow-circle-left"
-              label="Cancel">
-            </p-button>
-          </div>
-        </p-toolbar>
-      </div>
-    </div>
+    <ngshop-form-template [editMode]="editMode" (submitFormEvent)="onSubmit()">
+    </ngshop-form-template>
     <form [formGroup]="form">
       <div class="formgrid grid">
-        <div class="field col-12 md:col-4">
-          <label for="name">Name</label>
-          <input
-            formControlName="name"
-            required
-            id="name"
-            type="text"
-            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full" />
-          <small
-            class="p-error"
-            *ngIf="form?.get('name')?.hasError('required') && isSubmitted">
-            Name is required
-          </small>
-        </div>
-        <div class="field col-12 md:col-4">
-          <label for="icon">Icon</label>
-          <input
-            formControlName="icon"
-            id="icon"
-            type="text"
-            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full" />
-          <small
-            class="p-error"
-            *ngIf="form?.get('icon')?.hasError('required') && isSubmitted">
-            Name is required
-          </small>
+        <div class="field col-12 md:col-4" *ngFor="let field of fields">
+          <label [for]="field">{{
+            field[0].toUpperCase() + field.slice(1)
+          }}</label>
+          <ngshop-text-input
+            [controlName]="field"
+            [formControlName]="field"></ngshop-text-input>
+          <ngshop-error-msg
+            [controlName]="field"
+            [isSubmitted]="isSubmitted"
+            [form]="form"></ngshop-error-msg>
         </div>
         <div class="field col-12 md:col-4 admin-categories-form__color-plate">
           <label for="color">Color</label>
           <p-colorPicker formControlName="color"></p-colorPicker>
-          <small
-            class="p-error"
-            *ngIf="form?.get('color')?.hasError('required') && isSubmitted">
-            Name is required
-          </small>
+          <ngshop-error-msg
+            [controlName]="'color'"
+            [isSubmitted]="isSubmitted"
+            [form]="form"></ngshop-error-msg>
         </div>
       </div>
     </form>

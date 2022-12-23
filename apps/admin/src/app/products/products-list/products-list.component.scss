@@ -1,0 +1,13 @@
+.admin-products-list {
+  padding: 15px;
+
+  &__table {
+    &__btn:not(:last-child) {
+      margin-right: 10px;
+    }
+
+    &__img {
+      width: 100%;
+    }
+  }
+}

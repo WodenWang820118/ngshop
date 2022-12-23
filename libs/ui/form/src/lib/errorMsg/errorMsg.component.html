@@ -1,0 +1,5 @@
+<small
+  class="p-error"
+  *ngIf="form.get(controlName)?.hasError('required') && isSubmitted">
+  {{ controlName[0].toUpperCase() + controlName.slice(1) }} is required
+</small>
