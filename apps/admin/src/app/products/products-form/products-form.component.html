@@ -1,0 +1,97 @@
+<p-toast></p-toast>
+<div class="admin-products-form">
+  <p-card
+    [header]="editMode ? 'Edit Product' : 'Add Product'"
+    subheader="You can add or edit Products here">
+    <ngshop-form-template [editMode]="editMode" (submitFormEvent)="onSubmit()">
+    </ngshop-form-template>
+    <form [formGroup]="form">
+      <div class="formgrid grid">
+        <div class="field col-12 md:col-4" *ngFor="let field of fields">
+          <label [for]="field">{{
+            field[0].toUpperCase() + field.slice(1)
+          }}</label>
+          <ngshop-text-input
+            [controlName]="field"
+            [formControlName]="field"></ngshop-text-input>
+          <ngshop-error-msg
+            [controlName]="field"
+            [isSubmitted]="isSubmitted"
+            [form]="form"></ngshop-error-msg>
+        </div>
+      </div>
+      <div class="formgrid grid">
+        <div class="field col-12 md:col-3">
+          <label for="countInStock">Count In Stock</label>
+          <ngshop-text-input
+            [controlName]="'countInStock'"
+            [formControlName]="'countInStock'"></ngshop-text-input>
+          <ngshop-error-msg
+            [controlName]="'countInStock'"
+            [isSubmitted]="isSubmitted"
+            [form]="form"></ngshop-error-msg>
+        </div>
+        <div class="field col-12 md:col-3">
+          <label for="category">Category</label>
+          <p-dropdown
+            formControlName="category"
+            [options]="categories"
+            optionLabel="name"
+            optionValue="_id"
+            [filter]="true"
+            filterBy="name"
+            [showClear]="true"
+            [placeholder]="'Select a Category'"
+            [filterPlaceholder]="'Search'"
+            [style]="{ width: '100%' }"></p-dropdown>
+          <ngshop-error-msg
+            [controlName]="'category'"
+            [isSubmitted]="isSubmitted"
+            [form]="form"></ngshop-error-msg>
+        </div>
+        <div class="field col-12 md:col-3">
+          <label for="isFeatured">Is Featured</label><br />
+          <p-inputSwitch formControlName="isFeatured"></p-inputSwitch>
+        </div>
+      </div>
+      <div class="formgrid grid">
+        <div class="field col-12 md:col-12">
+          <label for="description">Description</label>
+          <textarea
+            formControlName="description"
+            id="description"
+            rows="5"
+            cols="30"
+            pInputTextarea
+            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"></textarea>
+          <ngshop-error-msg
+            [controlName]="'description'"
+            [isSubmitted]="isSubmitted"
+            [form]="form"></ngshop-error-msg>
+        </div>
+      </div>
+      <div class="formgrid grid">
+        <div class="field col-12 md:col-12">
+          <label for="richDescription">Rich Description</label>
+          <p-editor
+            formControlName="richDescription"
+            [style]="{ height: '320px' }"></p-editor>
+        </div>
+      </div>
+      <div class="formgrid grid">
+        <div class="field col-12 md:col-12">
+          <label for="name">Main Image</label>
+          <input
+            id="name"
+            type="file"
+            class="p-inputtext w-full"
+            accept="image/*"
+            (change)="onImageUpload($event)" />
+          <div class="col-2 mt-2 pl-0">
+            <img width="100%" [src]="imageDisplay" alt="" />
+          </div>
+        </div>
+      </div>
+    </form>
+  </p-card>
+</div>

@@ -1,0 +1,9 @@
+.admin-categories-list {
+  padding: 15px;
+
+  &__table {
+    &__btn:not(:last-child) {
+      margin-right: 10px;
+    }
+  }
+}

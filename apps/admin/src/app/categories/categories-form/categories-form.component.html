@@ -1,0 +1,33 @@
+<p-toast></p-toast>
+<div class="admin-categories-form">
+  <p-card
+    [header]="editMode ? 'Edit Category' : 'Add Category'"
+    subheader="You can add or edit categories here">
+    <ngshop-form-template [editMode]="editMode" (submitFormEvent)="onSubmit()">
+    </ngshop-form-template>
+    <form [formGroup]="form">
+      <div class="formgrid grid">
+        <div class="field col-12 md:col-4" *ngFor="let field of fields">
+          <label [for]="field">{{
+            field[0].toUpperCase() + field.slice(1)
+          }}</label>
+          <ngshop-text-input
+            [controlName]="field"
+            [formControlName]="field"></ngshop-text-input>
+          <ngshop-error-msg
+            [controlName]="field"
+            [isSubmitted]="isSubmitted"
+            [form]="form"></ngshop-error-msg>
+        </div>
+        <div class="field col-12 md:col-4 admin-categories-form__color-plate">
+          <label for="color">Color</label>
+          <p-colorPicker formControlName="color"></p-colorPicker>
+          <ngshop-error-msg
+            [controlName]="'color'"
+            [isSubmitted]="isSubmitted"
+            [form]="form"></ngshop-error-msg>
+        </div>
+      </div>
+    </form>
+  </p-card>
+</div>

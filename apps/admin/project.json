@@ -6,7 +6,7 @@
   "prefix": "ngshop",
   "targets": {
     "build": {
-      "executor": "@angular-devkit/build-angular:browser",
+      "executor": "@angular-devkit/build-angular:browser-esbuild",
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/apps/admin",
@@ -16,8 +16,12 @@
         "tsConfig": "apps/admin/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": ["apps/admin/src/favicon.ico", "apps/admin/src/assets"],
-        "styles": ["apps/admin/src/styles.scss"],
-        "scripts": []
+        "styles": [
+          "apps/admin/src/styles.scss",
+          "node_modules/quill/dist/quill.snow.css",
+          "node_modules/quill/dist/quill.core.css"
+        ],
+        "scripts": ["node_modules/quill/dist/quill.min.js"]
       },
       "configurations": {
         "production": {

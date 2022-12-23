@@ -17,8 +17,14 @@
           "error",
           {
             "type": "element",
-            "prefix": "ngshop",
+            "prefix": "admin",
             "style": "kebab-case"
+          }
+        ],
+        "prettier/prettier": [
+          "error",
+          {
+            "endOfLine": "auto"
           }
         ]
       },
@@ -30,7 +36,14 @@
     {
       "files": ["*.html"],
       "extends": ["plugin:@nrwl/nx/angular-template"],
-      "rules": {}
+      "rules": {
+        "prettier/prettier": [
+          "error",
+          {
+            "endOfLine": "auto"
+          }
+        ]
+      }
     }
   ]
 }
