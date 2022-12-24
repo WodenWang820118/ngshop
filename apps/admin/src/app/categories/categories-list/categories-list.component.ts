@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { CrudUiService } from '../../shared/services/crudUi.service';
 
 @Component({
-  selector: 'admin-list',
+  selector: 'admin-categories-list',
   templateUrl: './categories-list.component.html',
   styleUrls: ['./categories-list.component.scss'],
 })

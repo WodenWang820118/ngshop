@@ -31,6 +31,9 @@ import { InputSwitchModule } from 'primeng/inputswitch';
 import { DropdownModule } from 'primeng/dropdown';
 import { EditorModule } from 'primeng/editor';
 import { UiFormModule } from '@ngshop/ui/form';
+import { UsersFormComponent } from './users/users-form/users-form.component';
+import { UsersListComponent } from './users/users-list/users-list.component';
+import { UsersModule } from '@ngshop/users';
 
 @NgModule({
   declarations: [
@@ -42,6 +45,8 @@ import { UiFormModule } from '@ngshop/ui/form';
     CategoriesFormComponent,
     ProductsFormComponent,
     ProductsListComponent,
+    UsersFormComponent,
+    UsersListComponent,
   ],
   imports: [
     BrowserModule,
@@ -65,6 +70,7 @@ import { UiFormModule } from '@ngshop/ui/form';
     DropdownModule,
     EditorModule,
     UiFormModule,
+    UsersModule,
   ],
   providers: [MessageService, ConfirmationService],
   bootstrap: [AppComponent],
