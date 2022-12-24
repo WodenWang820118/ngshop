@@ -1,0 +1,69 @@
+<p-toast></p-toast>
+<div class="admin-users-list">
+  <p-card header="Users" subheader="List of all users">
+    <div class="grid">
+      <div class="col-12">
+        <p-toolbar>
+          <div class="p-toolbar-group-left">
+            <p-button
+              styleClass="p-button-success"
+              label="New"
+              icon="pi pi-plus"
+              routerLink="form">
+            </p-button>
+          </div>
+        </p-toolbar>
+      </div>
+    </div>
+    <div class="grid">
+      <div class="col-12">
+        <p-table [value]="users" styleClass="p-datatable-gridlines">
+          <ng-template pTemplate="header">
+            <tr>
+              <th pSortableColumn="name">Name <p-sortIcon></p-sortIcon></th>
+              <th>Email</th>
+              <th>Country</th>
+              <th>IsAdmin</th>
+              <th></th>
+            </tr>
+          </ng-template>
+          <ng-template
+            pTemplate="body"
+            let-user
+            class="admin-users-list__table">
+            <tr>
+              <td>
+                {{ user.name }}
+              </td>
+              <td>
+                {{ user.email }}
+              </td>
+              <td>
+                {{ user.country }}
+              </td>
+              <td>
+                {{ user.isAdmin }}
+              </td>
+              <td>
+                <p-button
+                  class="admin-users-list__table__btn mr-2"
+                  styleClass="p-button-danger"
+                  icon="pi pi-trash"
+                  (onClick)="deleteUser(user._id)"></p-button>
+                <p-button
+                  class="admin-users-list__table__btn"
+                  styleClass="p-button-success"
+                  icon="pi pi-pencil"
+                  (onClick)="updateUser(user._id)"></p-button>
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </div>
+  </p-card>
+</div>
+<p-confirmDialog
+  [style]="{ width: '50vw' }"
+  [baseZIndex]="10000"
+  rejectButtonStyleClass="p-button-text"></p-confirmDialog>

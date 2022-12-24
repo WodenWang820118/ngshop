@@ -1,0 +1,33 @@
+<p-toast></p-toast>
+<div class="admin-users-form">
+  <p-card
+    [header]="editMode ? 'Edit User' : 'Add User'"
+    subheader="You can add or edit users here">
+    <ngshop-form-template [editMode]="editMode" (submitFormEvent)="onSubmit()">
+    </ngshop-form-template>
+    <form [formGroup]="form">
+      <div *ngFor="let field of fields; let i = index" class="formgrid grid">
+        <div
+          *ngFor="let subField of field; let j = index"
+          class="field col-12 md:col-4">
+          <label [for]="subField">{{
+            subField[0].toUpperCase() + subField.slice(1)
+          }}</label>
+          <ngshop-text-input
+            [controlName]="subField"
+            [formControlName]="subField"></ngshop-text-input>
+          <ngshop-error-msg
+            [controlName]="subField"
+            [isSubmitted]="isSubmitted"
+            [form]="form"></ngshop-error-msg>
+        </div>
+      </div>
+      <div class="formgrid grid">
+        <div class="field col-12">
+          <label for="isAdmin">Is Admin</label><br />
+          <p-inputSwitch formControlName="isAdmin"></p-inputSwitch>
+        </div>
+      </div>
+    </form>
+  </p-card>
+</div>
